@@ -108,11 +108,11 @@ const Tables = () => {
   }, []);
 
   const fetchTable = () => {
-    fetch("http://js-post-api.herokuapp.com/api/posts?_limit=10&_page=2")
+    fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data);
-        setPostList(res.data);
+        console.log(res);
+        setPostList(res);
       });
   };
 
@@ -122,10 +122,9 @@ const Tables = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Description</TableCell>
-              <TableCell align="left">CreatedAt</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell align="left">Title</TableCell>
+              <TableCell align="left">Body</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -137,15 +136,14 @@ const Tables = () => {
               : postList
             )?.map((post) => (
               <TableRow
-                key={post.name}
+                key={post.postId}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {post.title}
+                  {post.id}
                 </TableCell>
-                <TableCell align="left">{post.author}</TableCell>
-                <TableCell align="left">{post.description}</TableCell>
-                <TableCell align="left">{post.createdAt}</TableCell>
+                <TableCell align="left">{post.title}</TableCell>
+                <TableCell align="left">{post.body}</TableCell>
               </TableRow>
             ))}
           </TableBody>
